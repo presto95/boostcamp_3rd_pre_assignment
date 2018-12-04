@@ -18,40 +18,40 @@ class API {
 }
 
 extension API {
-    static func requestMovieList(orderType: Int, completion: @escaping (MovieList?, Int?, Error?) -> Void) {
+    static func requestMovieList(orderType: Int, completion: @escaping (MovieList?, Error?) -> Void) {
         assert((0...2).contains(orderType), "order_type must be between 0 and 2.")
         guard let url = URL(string: "\(baseURL)/movies?order_type=\(orderType)") else { return }
-        Network.get(url, successHandler: { data, statusCode in
+        Network.get(url, successHandler: { data in
             do {
                 let decoded = try jsonDecoder.decode(MovieList.self, from: data)
-                completion(decoded, statusCode, nil)
+                completion(decoded, nil)
             } catch {
-                completion(nil, statusCode, error)
+                completion(nil, error)
             }
-        }, failureHandler: { completion(nil, nil, $0) })
+        }, failureHandler: { completion(nil, $0) })
     }
     
-    static func requestMovieDetail(id: String, completion: @escaping (MovieDetail?, Int?, Error?) -> Void) {
+    static func requestMovieDetail(id: String, completion: @escaping (MovieDetail?, Error?) -> Void) {
         guard let url = URL(string: "\(baseURL)/movie?id=\(id)") else { return }
-        Network.get(url, successHandler: { data, statusCode in
+        Network.get(url, successHandler: { data in
             do {
                 let decoded = try jsonDecoder.decode(MovieDetail.self, from: data)
-                completion(decoded, statusCode, nil)
+                completion(decoded, nil)
             } catch {
-                completion(nil, statusCode, error)
+                completion(nil, error)
             }
-        }, failureHandler: { completion(nil, nil, $0) })
+        }, failureHandler: { completion(nil, $0) })
     }
     
-    static func requestComments(id: String, completion: @escaping (Comment?, Int?, Error?) -> Void) {
+    static func requestComments(id: String, completion: @escaping ([Comment]?, Error?) -> Void) {
         guard let url = URL(string: "\(baseURL)/comments?movie_id=\(id)") else { return }
-        Network.get(url, successHandler: { data, statusCode in
+        Network.get(url, successHandler: { data in
             do {
-                let decoded = try jsonDecoder.decode(Comment.self, from: data)
-                completion(decoded, statusCode, nil)
+                let decoded = try jsonDecoder.decode([Comment].self, from: data)
+                completion(decoded, nil)
             } catch {
-                completion(nil, statusCode, error)
+                completion(nil, error)
             }
-        }, failureHandler: { completion(nil, nil, $0) })
+        }, failureHandler: { completion(nil, $0) })
     }
 }

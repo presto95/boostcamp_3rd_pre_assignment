@@ -25,6 +25,9 @@
 		1930064721B61E5B003C9DBB /* DetailCastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930064521B61E5B003C9DBB /* DetailCastCell.swift */; };
 		1930064B21B61E68003C9DBB /* DetailCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930064921B61E68003C9DBB /* DetailCommentCell.swift */; };
 		1930064E21B623B9003C9DBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1930064D21B623B9003C9DBB /* Main.storyboard */; };
+		1930065121B6507F003C9DBB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1930065021B6507F003C9DBB /* .swiftlint.yml */; };
+		1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065221B65C6D003C9DBB /* UIAlertController+.swift */; };
+		1930065721B666B6003C9DBB /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065621B666B6003C9DBB /* Int+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		1930064521B61E5B003C9DBB /* DetailCastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCastCell.swift; sourceTree = "<group>"; };
 		1930064921B61E68003C9DBB /* DetailCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCommentCell.swift; sourceTree = "<group>"; };
 		1930064D21B623B9003C9DBB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1930065021B6507F003C9DBB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		1930065221B65C6D003C9DBB /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
+		1930065621B666B6003C9DBB /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,7 @@
 		193005F221B53686003C9DBB = {
 			isa = PBXGroup;
 			children = (
+				1930065021B6507F003C9DBB /* .swiftlint.yml */,
 				193005FD21B53687003C9DBB /* BoxOffice */,
 				193005FC21B53687003C9DBB /* Products */,
 			);
@@ -93,10 +100,10 @@
 		1930061021B57DDC003C9DBB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				193005FE21B53687003C9DBB /* AppDelegate.swift */,
-				1930060521B53688003C9DBB /* Assets.xcassets */,
-				1930060721B53688003C9DBB /* LaunchScreen.storyboard */,
 				1930060A21B53688003C9DBB /* Info.plist */,
+				193005FE21B53687003C9DBB /* AppDelegate.swift */,
+				1930060721B53688003C9DBB /* LaunchScreen.storyboard */,
+				1930060521B53688003C9DBB /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -104,6 +111,8 @@
 		1930061121B57FDA003C9DBB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				1930065221B65C6D003C9DBB /* UIAlertController+.swift */,
+				1930065621B666B6003C9DBB /* Int+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -210,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1930065121B6507F003C9DBB /* .swiftlint.yml in Resources */,
 				1930060921B53688003C9DBB /* LaunchScreen.storyboard in Resources */,
 				1930064E21B623B9003C9DBB /* Main.storyboard in Resources */,
 				1930060621B53688003C9DBB /* Assets.xcassets in Resources */,
@@ -243,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1930065721B666B6003C9DBB /* Int+.swift in Sources */,
 				1930063221B61DEC003C9DBB /* MovieTableViewCell.swift in Sources */,
 				1930064721B61E5B003C9DBB /* DetailCastCell.swift in Sources */,
 				1930061521B57FF0003C9DBB /* Network.swift in Sources */,
@@ -251,6 +262,7 @@
 				1930064321B61E41003C9DBB /* DetailSynopsisCell.swift in Sources */,
 				1930062121B58508003C9DBB /* MovieCollectionViewController.swift in Sources */,
 				1930061B21B582F9003C9DBB /* MovieDetail.swift in Sources */,
+				1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */,
 				1930064B21B61E68003C9DBB /* DetailCommentCell.swift in Sources */,
 				1930061921B5808F003C9DBB /* MovieList.swift in Sources */,
 				1930062721B58531003C9DBB /* MovieDetailViewController.swift in Sources */,

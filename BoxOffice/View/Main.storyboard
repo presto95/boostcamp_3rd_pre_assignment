@@ -116,7 +116,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QID-Wd-WxG"/>
                     </view>
-                    <navigationItem key="navigationItem" id="iea-6v-XbO"/>
+                    <navigationItem key="navigationItem" id="iea-6v-XbO">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="ml7-Ck-nb3">
+                            <connections>
+                                <action selector="touchUpSettingButton:" destination="eqx-ja-hoJ" id="S4x-h3-8A4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="X72-sk-mdK" id="Th1-80-YSo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xj2-OJ-FvN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="1049" y="813"/>
         </scene>
-        <!--View Controller-->
+        <!--Movie Detail View Controller-->
         <scene sceneID="aK8-0a-G9N">
             <objects>
-                <viewController id="d8M-9M-lS4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d8M-9M-lS4" customClass="MovieDetailViewController" customModule="BoxOffice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Cz-HP-Jbn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -222,6 +231,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="uGA-Ur-qvV"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="X7F-Ve-hYu" id="Bq2-j3-J8X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aOc-G3-qxs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,12 +7,16 @@
 //
 
 struct MovieList: Codable {
-    let grade: Int
-    let thumb: String
-    let reservationGrade: Int
-    let title: String
-    let reservationRate: Double
-    let userRating: Double
-    let date: String
-    let id: String
+    struct Data: Codable {
+        let grade: Int
+        let thumb: String
+        let reservationGrade: Int
+        let title: String
+        let reservationRate: Double
+        let userRating: Double
+        let date: String
+        let id: String
+    }
+    let orderType: Int
+    let movies: [Data]
 }
