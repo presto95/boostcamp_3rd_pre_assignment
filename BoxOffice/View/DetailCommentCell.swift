@@ -49,6 +49,12 @@ class DetailCommentCell: UITableViewCell {
             contentsLabel.text = nil
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        commentLabel.text = "한줄평"
+        composeButton.isHidden = false
+    }
 
     func setProperties(_ object: Comment.Data, at row: Int) {
         if row != 0 {

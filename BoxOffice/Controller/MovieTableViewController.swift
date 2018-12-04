@@ -25,6 +25,7 @@ class MovieTableViewController: MovieBaseViewController {
     override func requestCompletion(movieList: MovieList?, error: Error?) {
         super.requestCompletion(movieList: movieList, error: error)
         DispatchQueue.main.async {
+            self.tableView.separatorStyle = .singleLine
             self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         }
