@@ -12,12 +12,9 @@ class MovieDetailViewController: UIViewController {
 
     private let cellIdentifiers = ["infoCell", "synopsisCell", "castCell", "commentCell"]
     
-    @IBOutlet private weak var tableView: UITableView! {
-        didSet {
-            tableView.dataSource = self
-            tableView.delegate = self
-        }
-    }
+    var movieInfo: MovieList.Data?
+    
+    @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
