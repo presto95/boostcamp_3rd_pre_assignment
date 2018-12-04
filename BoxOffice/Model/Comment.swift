@@ -7,9 +7,13 @@
 //
 
 struct Comment: Codable {
-    let rating: Double
-    let timestamp: Double
-    let writer: String
-    let movieId: String
-    let contents: String
+    struct Data: Codable {
+        let rating: Double
+        let timestamp: Double
+        let writer: String
+        let movieId: String
+        let contents: String
+        let id: String
+    }
+    let comments: [Data]
 }

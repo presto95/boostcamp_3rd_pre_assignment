@@ -32,6 +32,7 @@ extension API {
     }
     
     static func requestMovieDetail(id: String, completion: @escaping (MovieDetail?, Error?) -> Void) {
+        assert(!id.isEmpty, "id must not be empty.")
         guard let url = URL(string: "\(baseURL)/movie?id=\(id)") else { return }
         Network.get(url, successHandler: { data in
             do {
@@ -43,11 +44,12 @@ extension API {
         }, failureHandler: { completion(nil, $0) })
     }
     
-    static func requestComments(id: String, completion: @escaping ([Comment]?, Error?) -> Void) {
+    static func requestComments(id: String, completion: @escaping (Comment?, Error?) -> Void) {
+        assert(!id.isEmpty, "id must not be empty.")
         guard let url = URL(string: "\(baseURL)/comments?movie_id=\(id)") else { return }
         Network.get(url, successHandler: { data in
             do {
-                let decoded = try jsonDecoder.decode([Comment].self, from: data)
+                let decoded = try jsonDecoder.decode(Comment.self, from: data)
                 completion(decoded, nil)
             } catch {
                 completion(nil, error)

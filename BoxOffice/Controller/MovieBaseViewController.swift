@@ -65,4 +65,11 @@ class MovieBaseViewController: UIViewController {
             .action(title: "취소", style: .cancel, handler: nil)
             .present(to: self)
     }
+    
+    func pushDetailViewController(id: String, title: String) {
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else { return }
+        detailVC.title = title
+        detailVC.id = id
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }
