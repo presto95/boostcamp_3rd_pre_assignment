@@ -18,11 +18,9 @@ class MovieDetailViewController: UIViewController {
     
     private var comments: [Comment.Data]?
     
-    @IBOutlet private weak var tableView: UITableView!
+    private lazy var previewViewController = UIViewController()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -51,13 +49,14 @@ class MovieDetailViewController: UIViewController {
         }
     }
 }
-// MARK: - UITableViewDataSource Implementation
+
 extension MovieDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifiers[indexPath.section], for: indexPath)
         switch indexPath.section {
         case 0:
             if let infoCell = cell as? DetailInfoCell, let movieDetail = movieDetail {
+                infoCell.delegate = self
                 infoCell.setProperties(movieDetail)
             }
         case 1:
@@ -91,7 +90,7 @@ extension MovieDetailViewController: UITableViewDataSource {
         return 4
     }
 }
-// MARK: - UITableViewDelegate Implementation
+
 extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 16))
@@ -106,5 +105,27 @@ extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 3 { return .leastNonzeroMagnitude }
         return 16
+    }
+}
+
+extension MovieDetailViewController: DetailInfoCellDelegate {
+    func didTapPosterImageView(_ recognizer: UITapGestureRecognizer) {
+        if let image = (recognizer.view as? UIImageView)?.image {
+            let _: UIImageView = {
+                let view = UIImageView(frame: UIScreen.main.bounds)
+                view.isUserInteractionEnabled = true
+                view.contentMode = .scaleAspectFit
+                view.image = image
+                view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpPosterImageView(_:))))
+                previewViewController.view.addSubview(view)
+                return view
+            }()
+            present(previewViewController, animated: false, completion: nil)
+            
+        }
+    }
+    
+    @objc func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
+        previewViewController.dismiss(animated: false, completion: nil)
     }
 }

@@ -39,7 +39,7 @@ class MovieTableViewController: MovieBaseViewController {
        presentSettingActionSheet()
     }
 }
-// MARK: - UITableViewDataSource Implementation
+
 extension MovieTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -53,7 +53,6 @@ extension MovieTableViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate Implementation
 extension MovieTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

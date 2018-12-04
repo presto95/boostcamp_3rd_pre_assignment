@@ -38,7 +38,7 @@ class MovieCollectionViewController: MovieBaseViewController {
         presentSettingActionSheet()
     }
 }
-// MARK: - UICollectionViewDataSource Implementation
+
 extension MovieCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -52,7 +52,7 @@ extension MovieCollectionViewController: UICollectionViewDataSource {
         return movieLists?.count ?? 0
     }
 }
-// MARK: - UICollectionViewDelegate Implementation
+
 extension MovieCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
@@ -61,6 +61,10 @@ extension MovieCollectionViewController: UICollectionViewDelegate {
         }
     }
 }
-// MARK: - UICollectionViewDelegateFlowLayout Implementation
+
 extension MovieCollectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.bounds.width / 2 - 8
+        return CGSize(width: width, height: width * 1.8)
+    }
 }

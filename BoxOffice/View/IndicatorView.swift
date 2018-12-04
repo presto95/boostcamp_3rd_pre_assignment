@@ -24,26 +24,32 @@ class IndicatorView: UIView {
     
     private func setup() {
         backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .lightGray
-        backgroundView.layer.cornerRadius = 10
-        backgroundView.clipsToBounds = true
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(backgroundView)
-        NSLayoutConstraint.activate([
-            backgroundView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            backgroundView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            backgroundView.widthAnchor.constraint(equalToConstant: 80),
-            backgroundView.heightAnchor.constraint(equalToConstant: 80)
-            ])
-        let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
-        activityIndicatorView.startAnimating()
-        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundView.addSubview(activityIndicatorView)
-        NSLayoutConstraint.activate([
-            activityIndicatorView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
-            activityIndicatorView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
-            ])
+        let backgroundView: UIView = {
+            let view = UIView()
+            view.backgroundColor = .lightGray
+            view.layer.cornerRadius = 10
+            view.clipsToBounds = true
+            view.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(view)
+            NSLayoutConstraint.activate([
+                view.centerXAnchor.constraint(equalTo: centerXAnchor),
+                view.centerYAnchor.constraint(equalTo: centerYAnchor),
+                view.widthAnchor.constraint(equalToConstant: 80),
+                view.heightAnchor.constraint(equalToConstant: 80)
+                ])
+            return view
+        }()
+        let _: UIActivityIndicatorView = {
+            let view = UIActivityIndicatorView(style: .whiteLarge)
+            view.startAnimating()
+            view.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.addSubview(view)
+            NSLayoutConstraint.activate([
+                view.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor),
+                view.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
+                ])
+            return view
+        }()
     }
     
     func show() {

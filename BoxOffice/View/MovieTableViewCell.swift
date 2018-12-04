@@ -10,27 +10,27 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView!
     
-    @IBOutlet weak var gradeImageView: UIImageView! {
+    @IBOutlet private weak var gradeImageView: UIImageView! {
         didSet {
             gradeImageView.image = nil
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel! {
+    @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = nil
         }
     }
     
-    @IBOutlet weak var descriptionLabel: UILabel! {
+    @IBOutlet private weak var descriptionLabel: UILabel! {
         didSet {
             descriptionLabel.text = nil
         }
     }
     
-    @IBOutlet weak var dateLabel: UILabel! {
+    @IBOutlet private weak var dateLabel: UILabel! {
         didSet {
             dateLabel.text = nil
         }

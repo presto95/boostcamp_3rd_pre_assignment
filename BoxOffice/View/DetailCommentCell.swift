@@ -75,7 +75,9 @@ class DetailCommentCell: UITableViewCell {
                     imageView.image = UIImage(named: "ic_star_large_full")
                 } else if value >= unit + 1 {
                     imageView.image = UIImage(named: "ic_star_large_half")
-                }
+                } else {
+                    imageView.image = UIImage(named: "ic_star_large")
+                } 
             }
         }
     }

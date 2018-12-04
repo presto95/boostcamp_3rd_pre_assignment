@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DetailInfoCellDelegate: class {
+    func didTapPosterImageView(_ recognizer: UITapGestureRecognizer)
+}
+
 class DetailInfoCell: UITableViewCell {
     
     private lazy var numberFormatter: NumberFormatter = {
@@ -15,8 +19,14 @@ class DetailInfoCell: UITableViewCell {
         formatter.numberStyle = .decimal
         return formatter
     }()
+    
+    weak var delegate: DetailInfoCellDelegate?
 
-    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var posterImageView: UIImageView! {
+        didSet {
+            posterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpPosterImageView(_:))))
+        }
+    }
     
     @IBOutlet private weak var gradeImageView: UIImageView! {
         didSet {
@@ -89,6 +99,10 @@ class DetailInfoCell: UITableViewCell {
         setRatingStackView(rating: object.userRating)
     }
     
+    @objc func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
+        delegate?.didTapPosterImageView(recognizer)
+    }
+    
     private func setRatingStackView(rating value: Double) {
         for (index, view) in ratingStackView.arrangedSubviews.enumerated() {
             if let imageView = view as? UIImageView {
@@ -97,6 +111,8 @@ class DetailInfoCell: UITableViewCell {
                     imageView.image = UIImage(named: "ic_star_large_full")
                 } else if value >= unit + 1 {
                     imageView.image = UIImage(named: "ic_star_large_half")
+                } else {
+                    imageView.image = UIImage(named: "ic_star_large")
                 }
             }
         }

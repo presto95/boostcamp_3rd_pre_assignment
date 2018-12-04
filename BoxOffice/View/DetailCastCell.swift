@@ -10,13 +10,13 @@ import UIKit
 
 class DetailCastCell: UITableViewCell {
 
-    @IBOutlet weak var directorLabel: UILabel! {
+    @IBOutlet private weak var directorLabel: UILabel! {
         didSet {
             directorLabel.text = nil
         }
     }
     
-    @IBOutlet weak var actorLabel: UILabel! {
+    @IBOutlet private weak var actorLabel: UILabel! {
         didSet {
             actorLabel.text = nil
         }

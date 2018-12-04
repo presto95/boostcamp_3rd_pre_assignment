@@ -4,5 +4,5 @@ disabled_rules:
 - leading_whitespace
 
 identifier_name:
-excluded:
-- id
+    excluded:
+    - id

@@ -10,7 +10,7 @@ import UIKit
 
 class DetailSynopsisCell: UITableViewCell {
 
-    @IBOutlet weak var synopsisLabel: UILabel! {
+    @IBOutlet private weak var synopsisLabel: UILabel! {
         didSet {
             synopsisLabel.text = nil
         }
