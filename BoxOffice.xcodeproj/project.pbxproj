@@ -29,6 +29,8 @@
 		1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065221B65C6D003C9DBB /* UIAlertController+.swift */; };
 		1930065721B666B6003C9DBB /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065621B666B6003C9DBB /* Int+.swift */; };
 		1930065921B684B0003C9DBB /* MovieBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065821B684B0003C9DBB /* MovieBaseViewController.swift */; };
+		1930065B21B68D95003C9DBB /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065A21B68D95003C9DBB /* IndicatorView.swift */; };
+		1930065D21B695B1003C9DBB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065C21B695B1003C9DBB /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		1930065221B65C6D003C9DBB /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		1930065621B666B6003C9DBB /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		1930065821B684B0003C9DBB /* MovieBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBaseViewController.swift; sourceTree = "<group>"; };
+		1930065A21B68D95003C9DBB /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		1930065C21B695B1003C9DBB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,7 @@
 				193005FE21B53687003C9DBB /* AppDelegate.swift */,
 				1930060721B53688003C9DBB /* LaunchScreen.storyboard */,
 				1930060521B53688003C9DBB /* Assets.xcassets */,
+				1930065C21B695B1003C9DBB /* NetworkError.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				1930064121B61E41003C9DBB /* DetailSynopsisCell.swift */,
 				1930064521B61E5B003C9DBB /* DetailCastCell.swift */,
 				1930064921B61E68003C9DBB /* DetailCommentCell.swift */,
+				1930065A21B68D95003C9DBB /* IndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1930065B21B68D95003C9DBB /* IndicatorView.swift in Sources */,
 				1930065721B666B6003C9DBB /* Int+.swift in Sources */,
 				1930063221B61DEC003C9DBB /* MovieTableViewCell.swift in Sources */,
 				1930064721B61E5B003C9DBB /* DetailCastCell.swift in Sources */,
@@ -264,6 +271,7 @@
 				1930061F21B584FF003C9DBB /* MovieTableViewController.swift in Sources */,
 				1930064321B61E41003C9DBB /* DetailSynopsisCell.swift in Sources */,
 				1930062121B58508003C9DBB /* MovieCollectionViewController.swift in Sources */,
+				1930065D21B695B1003C9DBB /* NetworkError.swift in Sources */,
 				1930061B21B582F9003C9DBB /* MovieDetail.swift in Sources */,
 				1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */,
 				1930065921B684B0003C9DBB /* MovieBaseViewController.swift in Sources */,

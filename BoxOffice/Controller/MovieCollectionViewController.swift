@@ -56,6 +56,8 @@ extension MovieCollectionViewController: UICollectionViewDataSource {
 extension MovieCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") else { return }
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 // MARK: - UICollectionViewDelegateFlowLayout Implementation

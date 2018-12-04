@@ -8,19 +8,13 @@
 
 import Foundation
 
-enum NetworkError: Int, Error {
-    case badRequestError = 400
-    case unauthorizedError = 401
-    case forbiddenError = 403
-    case notFoundError = 404
-    case unknownError
-}
-
 class Network {
     static func get(_ url: URL, successHandler: ((Data) -> Void)?, failureHandler: ((Error) -> Void)?) {
         let session = URLSession(configuration: .default)
+        IndicatorView.shared.show()
         let task = session.dataTask(with: url) { data, response, error in
             defer {
+                IndicatorView.shared.hide()
                 session.finishTasksAndInvalidate()
             }
             if let error = error {
@@ -31,7 +25,7 @@ class Network {
             if let data = data, statusCode == 200 {
                 successHandler?(data)
             } else {
-                failureHandler?(NetworkError(rawValue: statusCode) ?? NetworkError.unknownError)
+                failureHandler?(NetworkError(rawValue: statusCode) ?? .unknownError)
             }
         }
         task.resume()

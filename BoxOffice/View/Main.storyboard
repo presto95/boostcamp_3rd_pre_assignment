@@ -300,6 +300,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="d8M-9M-lS4" id="WbP-OE-rec"/>
+                                    <outlet property="delegate" destination="d8M-9M-lS4" id="w7A-1c-Pnz"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
