@@ -14,26 +14,26 @@ class MovieCollectionViewController: UIViewController {
         super.viewDidLoad()
     }
 }
-// MARK: - UICollectionViewDataSource Implementation
-extension MovieCollectionViewController {
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if let movieCell = cell as? MovieCollectionViewCell {
-            
-        }
-        return cell
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
-}
-//MARK: - UICollectionViewDelegate Implementation
-extension MovieCollectionViewController {
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: NSStringFromClass(MovieDetailTableViewController.self)) else { return }
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
-}
+//// MARK: - UICollectionViewDataSource Implementation
+//extension MovieCollectionViewController {
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+//        if let movieCell = cell as? MovieCollectionViewCell {
+//            
+//        }
+//        return cell
+//    }
+//    
+//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of items
+//        return 0
+//    }
+//}
+////MARK: - UICollectionViewDelegate Implementation
+//extension MovieCollectionViewController {
+//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: NSStringFromClass(MovieDetailViewController.self)) else { return }
+//        navigationController?.pushViewController(detailVC, animated: true)
+//    }
+//}
