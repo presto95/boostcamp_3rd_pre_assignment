@@ -10,11 +10,7 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var posterImageView: UIImageView! {
-        didSet {
-            posterImageView.image = UIImage(named: "img_placeholder")
-        }
-    }
+    @IBOutlet weak var posterImageView: UIImageView!
     
     @IBOutlet weak var gradeImageView: UIImageView! {
         didSet {

@@ -28,6 +28,7 @@
 		1930065121B6507F003C9DBB /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1930065021B6507F003C9DBB /* .swiftlint.yml */; };
 		1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065221B65C6D003C9DBB /* UIAlertController+.swift */; };
 		1930065721B666B6003C9DBB /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065621B666B6003C9DBB /* Int+.swift */; };
+		1930065921B684B0003C9DBB /* MovieBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065821B684B0003C9DBB /* MovieBaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		1930065021B6507F003C9DBB /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		1930065221B65C6D003C9DBB /* UIAlertController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+.swift"; sourceTree = "<group>"; };
 		1930065621B666B6003C9DBB /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		1930065821B684B0003C9DBB /* MovieBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		1930061C21B584D9003C9DBB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1930065821B684B0003C9DBB /* MovieBaseViewController.swift */,
 				1930061E21B584FF003C9DBB /* MovieTableViewController.swift */,
 				1930062021B58508003C9DBB /* MovieCollectionViewController.swift */,
 				1930062621B58531003C9DBB /* MovieDetailViewController.swift */,
@@ -263,6 +266,7 @@
 				1930062121B58508003C9DBB /* MovieCollectionViewController.swift in Sources */,
 				1930061B21B582F9003C9DBB /* MovieDetail.swift in Sources */,
 				1930065321B65C6D003C9DBB /* UIAlertController+.swift in Sources */,
+				1930065921B684B0003C9DBB /* MovieBaseViewController.swift in Sources */,
 				1930064B21B61E68003C9DBB /* DetailCommentCell.swift in Sources */,
 				1930061921B5808F003C9DBB /* MovieList.swift in Sources */,
 				1930062721B58531003C9DBB /* MovieDetailViewController.swift in Sources */,
@@ -408,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RVFJQPN7Q;
+				DEVELOPMENT_TEAM = H79MF628K3;
 				INFOPLIST_FILE = "$(SRCROOT)/BoxOffice/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -426,7 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9RVFJQPN7Q;
+				DEVELOPMENT_TEAM = H79MF628K3;
 				INFOPLIST_FILE = "$(SRCROOT)/BoxOffice/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

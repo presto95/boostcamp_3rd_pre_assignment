@@ -8,15 +8,7 @@
 
 import UIKit
 
-class MovieTableViewController: UIViewController {
- 
-    private let orderTypeKey = "orderType"
-    
-    private var orderType: Int {
-        return UserDefaults.standard.integer(forKey: orderTypeKey)
-    }
-    
-    private var movieLists: [MovieList.Data]?
+class MovieTableViewController: MovieBaseViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -26,29 +18,12 @@ class MovieTableViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
-            //tableView.rowHeight = UITableView.automaticDimension
             tableView.refreshControl = refreshControl
-            tableView.delegate = self
-            tableView.dataSource = self
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        API.requestMovieList(orderType: orderType, completion: requestCompletion)
-    }
-    
-    private func requestCompletion(movieList: MovieList?, error: Error?) {
-        if let error = error {
-            UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
-            return
-        }
-        guard let movieList = movieList else { return }
-        self.movieLists = movieList.movies
+    override func requestCompletion(movieList: MovieList?, error: Error?) {
+        super.requestCompletion(movieList: movieList, error: error)
         DispatchQueue.main.async {
             self.tableView.refreshControl?.endRefreshing()
             self.tableView.reloadData()
@@ -60,21 +35,7 @@ class MovieTableViewController: UIViewController {
     }
     
     @IBAction private func touchUpSettingButton(_ sender: UIBarButtonItem) {
-        UIAlertController
-            .alert(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", style: .actionSheet)
-            .action(title: "예매율") { _ in
-                UserDefaults.standard.set(0, forKey: self.orderTypeKey)
-            }
-            .action(title: "큐레이션") { _ in
-                UserDefaults.standard.set(1, forKey: self.orderTypeKey)
-            }
-            .action(title: "개봉일") { _ in
-                UserDefaults.standard.set(2, forKey: self.orderTypeKey)
-            }
-            .action(title: "취소", style: .cancel, handler: nil)
-            .present(to: self) {
-                API.requestMovieList(orderType: self.orderType, completion: self.requestCompletion)
-            }
+       presentSettingActionSheet()
     }
 }
 // MARK: - UITableViewDataSource Implementation
