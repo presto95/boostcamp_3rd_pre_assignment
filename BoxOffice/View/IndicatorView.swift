@@ -26,7 +26,7 @@ class IndicatorView: UIView {
         backgroundColor = UIColor.black.withAlphaComponent(0.3)
         let backgroundView: UIView = {
             let view = UIView()
-            view.backgroundColor = .lightGray
+            view.backgroundColor = .black
             view.layer.cornerRadius = 10
             view.clipsToBounds = true
             view.translatesAutoresizingMaskIntoConstraints = false
