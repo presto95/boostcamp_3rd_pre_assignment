@@ -16,4 +16,5 @@ struct Comment: Codable {
         let id: String
     }
     let comments: [Data]
+    let movieId: String
 }

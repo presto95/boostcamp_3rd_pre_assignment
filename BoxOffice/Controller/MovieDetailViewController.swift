@@ -69,8 +69,8 @@ extension MovieDetailViewController: UITableViewDataSource {
                 castCell.setProperties(director: director, actor: actor)
             }
         case 3:
-            if let commentCell = cell as? DetailCommentCell {
-                
+            if let commentCell = cell as? DetailCommentCell, let comment = comments?[indexPath.row] {
+                commentCell.setProperties(comment, at: indexPath.row)
             }
         default:
             break
@@ -88,13 +88,23 @@ extension MovieDetailViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         guard movieDetail != nil, comments != nil else { return 0 }
-        //return 4
-        return 3
+        return 4
     }
 }
 // MARK: - UITableViewDelegate Implementation
 extension MovieDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 16))
+        footerView.backgroundColor = .lightGray
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNonzeroMagnitude
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 3 { return .leastNonzeroMagnitude }
+        return 16
     }
 }

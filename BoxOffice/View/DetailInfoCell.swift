@@ -92,31 +92,11 @@ class DetailInfoCell: UITableViewCell {
     private func setRatingStackView(rating value: Double) {
         for (index, view) in ratingStackView.arrangedSubviews.enumerated() {
             if let imageView = view as? UIImageView {
-                switch index {
-                case 0 where value >= 0:
-                    imageView.image = UIImage(named: "ic_star_large")
-                case 1 where value >= 1:
-                    imageView.image = UIImage(named: "ic_star_half")
-                case 2 where value >= 2:
-                    imageView.image = UIImage(named: "ic_star_full")
-                case 3 where value >= 3:
-                    imageView.image = UIImage(named: "ic_star_half")
-                case 4 where value >= 4:
-                    imageView.image = UIImage(named: "ic_star_full")
-                case 5 where value >= 5:
-                    imageView.image = UIImage(named: "ic_star_half")
-                case 6 where value >= 6:
-                    imageView.image = UIImage(named: "ic_star_full")
-                case 7 where value >= 7:
-                    imageView.image = UIImage(named: "ic_star_half")
-                case 8 where value >= 8:
-                    imageView.image = UIImage(named: "ic_star_full")
-                case 9 where value >= 9:
-                    imageView.image = UIImage(named: "ic_star_half")
-                case 10 where value >= 10:
-                    imageView.image = UIImage(named: "ic_star_full")
-                default:
-                    break
+                let unit = Double(index * 2)
+                if value >= unit + 2 {
+                    imageView.image = UIImage(named: "ic_star_large_full")
+                } else if value >= unit + 1 {
+                    imageView.image = UIImage(named: "ic_star_large_half")
                 }
             }
         }
