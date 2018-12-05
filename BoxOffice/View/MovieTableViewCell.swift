@@ -36,6 +36,10 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        posterImageView.image = UIImage(named: "img_placeholder")
+    }
+    
     func setProperties(_ object: MovieList.Data) {
         guard let thumbURL = URL(string: object.thumb) else { return }
         DispatchQueue.global(qos: .userInitiated).async {
