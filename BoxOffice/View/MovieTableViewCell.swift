@@ -37,6 +37,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         posterImageView.image = UIImage(named: "img_placeholder")
     }
     
