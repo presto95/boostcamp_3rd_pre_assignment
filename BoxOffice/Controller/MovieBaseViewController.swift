@@ -12,24 +12,15 @@ class MovieBaseViewController: UIViewController {
     
     let orderTypeKey = "orderType"
     
+    private let navigationTitles = ["예매율", "큐레이션", "개봉일"]
+    
     var orderType: Int {
         get {
             return UserDefaults.standard.integer(forKey: orderTypeKey)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: orderTypeKey)
-            navigationItem.title = {
-                switch newValue {
-                case 0:
-                    return "예매율"
-                case 1:
-                    return "큐레이션"
-                case 2:
-                    return "개봉일"
-                default:
-                    return nil
-                }
-            }()
+            navigationItem.title = navigationTitles[newValue]
             API.requestMovieList(orderType: newValue, completion: self.requestCompletion)
         }
     }

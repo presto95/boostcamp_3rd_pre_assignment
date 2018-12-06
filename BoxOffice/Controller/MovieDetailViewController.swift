@@ -121,7 +121,6 @@ extension MovieDetailViewController: DetailInfoCellDelegate {
                 return view
             }()
             present(previewViewController, animated: false, completion: nil)
-            
         }
     }
     
