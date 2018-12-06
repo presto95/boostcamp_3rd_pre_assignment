@@ -18,9 +18,11 @@ class MovieDetailViewController: UIViewController {
     
     private var comments: [Comment.Data]?
     
-    private lazy var previewViewController = UIViewController()
-    
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            tableView.backgroundColor = .white
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -111,20 +113,10 @@ extension MovieDetailViewController: UITableViewDelegate {
 extension MovieDetailViewController: DetailInfoCellDelegate {
     func didTapPosterImageView(_ recognizer: UITapGestureRecognizer) {
         if let image = (recognizer.view as? UIImageView)?.image {
-            let _: UIImageView = {
-                let view = UIImageView(frame: UIScreen.main.bounds)
-                view.isUserInteractionEnabled = true
-                view.contentMode = .scaleAspectFit
-                view.image = image
-                view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpPosterImageView(_:))))
-                previewViewController.view.addSubview(view)
-                return view
-            }()
-            present(previewViewController, animated: false, completion: nil)
+            let previewViewController = PreviewViewController()
+            previewViewController.modalTransitionStyle = .crossDissolve
+            previewViewController.image = image
+            present(previewViewController, animated: true, completion: nil)
         }
-    }
-    
-    @objc func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
-        previewViewController.dismiss(animated: false, completion: nil)
     }
 }

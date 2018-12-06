@@ -31,6 +31,7 @@
 		1930065921B684B0003C9DBB /* MovieBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065821B684B0003C9DBB /* MovieBaseViewController.swift */; };
 		1930065B21B68D95003C9DBB /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065A21B68D95003C9DBB /* IndicatorView.swift */; };
 		1930065D21B695B1003C9DBB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1930065C21B695B1003C9DBB /* NetworkError.swift */; };
+		198426A421B9670A001F491C /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198426A321B9670A001F491C /* PreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		1930065821B684B0003C9DBB /* MovieBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBaseViewController.swift; sourceTree = "<group>"; };
 		1930065A21B68D95003C9DBB /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		1930065C21B695B1003C9DBB /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		198426A321B9670A001F491C /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				1930061E21B584FF003C9DBB /* MovieTableViewController.swift */,
 				1930062021B58508003C9DBB /* MovieCollectionViewController.swift */,
 				1930062621B58531003C9DBB /* MovieDetailViewController.swift */,
+				198426A321B9670A001F491C /* PreviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				1930065B21B68D95003C9DBB /* IndicatorView.swift in Sources */,
 				1930065721B666B6003C9DBB /* Int+.swift in Sources */,
+				198426A421B9670A001F491C /* PreviewViewController.swift in Sources */,
 				1930063221B61DEC003C9DBB /* MovieTableViewCell.swift in Sources */,
 				1930064721B61E5B003C9DBB /* DetailCastCell.swift in Sources */,
 				1930061521B57FF0003C9DBB /* Network.swift in Sources */,
