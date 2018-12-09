@@ -44,6 +44,9 @@ extension MovieTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if let movieCell = cell as? MovieTableViewCell, let movieList = movieLists?[indexPath.row] {
+            movieCell.imageFetchFailureHandler = {
+                UIAlertController.presentErrorAlert(to: self, message: $0?.localizedDescription)
+            }
             movieCell.setProperties(movieList)
         }
         return cell

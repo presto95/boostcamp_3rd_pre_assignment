@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Network {
     static func get(_ url: URL, successHandler: ((Data) -> Void)?, failureHandler: ((Error) -> Void)?) {
@@ -29,5 +30,19 @@ class Network {
             }
         }
         task.resume()
+    }
+    
+    static func fetchImage(from url: URL, completion: ((UIImage?, Error?) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let imageData = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    let image = UIImage(data: imageData)
+                    completion?(image, nil)
+                }
+            } catch {
+                completion?(nil, error)
+            }
+        }
     }
 }

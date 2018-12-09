@@ -43,6 +43,9 @@ extension MovieCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         if let movieCell = cell as? MovieCollectionViewCell, let movieList = movieLists?[indexPath.row] {
+            movieCell.imageFetchFailureHandler = {
+                UIAlertController.presentErrorAlert(to: self, message: $0?.localizedDescription)
+            }
             movieCell.setProperties(movieList)
         }
         return cell

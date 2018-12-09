@@ -58,7 +58,15 @@ extension MovieDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             if let infoCell = cell as? DetailInfoCell, let movieDetail = movieDetail {
-                infoCell.delegate = self
+                infoCell.tapPosterImageViewHandler = { image in
+                    let previewViewController = PreviewViewController()
+                    previewViewController.modalTransitionStyle = .crossDissolve
+                    previewViewController.image = image
+                    self.present(previewViewController, animated: true, completion: nil)
+                }
+                infoCell.imageFetchFailureHandler = {
+                    UIAlertController.presentErrorAlert(to: self, message: $0?.localizedDescription)
+                }
                 infoCell.setProperties(movieDetail)
             }
         case 1:
@@ -107,16 +115,5 @@ extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 3 { return .leastNonzeroMagnitude }
         return 16
-    }
-}
-
-extension MovieDetailViewController: DetailInfoCellDelegate {
-    func didTapPosterImageView(_ recognizer: UITapGestureRecognizer) {
-        if let image = (recognizer.view as? UIImageView)?.image {
-            let previewViewController = PreviewViewController()
-            previewViewController.modalTransitionStyle = .crossDissolve
-            previewViewController.image = image
-            present(previewViewController, animated: true, completion: nil)
-        }
     }
 }

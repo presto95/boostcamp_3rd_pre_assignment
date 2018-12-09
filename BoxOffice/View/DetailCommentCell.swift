@@ -64,21 +64,6 @@ class DetailCommentCell: UITableViewCell {
         writerLabel.text = object.writer
         timestampLabel.text = dateFormatter.string(from: Date(timeIntervalSince1970: object.timestamp))
         contentsLabel.text = object.contents
-        setRatingStackView(rating: object.rating)
-    }
-    
-    private func setRatingStackView(rating value: Double) {
-        for (index, view) in ratingStackView.arrangedSubviews.enumerated() {
-            if let imageView = view as? UIImageView {
-                let unit = Double(index * 2)
-                if value >= unit + 2 {
-                    imageView.image = UIImage(named: "ic_star_large_full")
-                } else if value >= unit + 1 {
-                    imageView.image = UIImage(named: "ic_star_large_half")
-                } else {
-                    imageView.image = UIImage(named: "ic_star_large")
-                } 
-            }
-        }
+        ratingStackView.setRating(object.rating)
     }
 }

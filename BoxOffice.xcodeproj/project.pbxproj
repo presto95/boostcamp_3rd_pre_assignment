@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190FC41221BD1A1A0007C4A1 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190FC41121BD1A1A0007C4A1 /* UIStackView+.swift */; };
 		193005FF21B53687003C9DBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193005FE21B53687003C9DBB /* AppDelegate.swift */; };
 		1930060621B53688003C9DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1930060521B53688003C9DBB /* Assets.xcassets */; };
 		1930060921B53688003C9DBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1930060721B53688003C9DBB /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		190FC41121BD1A1A0007C4A1 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		193005FB21B53687003C9DBB /* BoxOffice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOffice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		193005FE21B53687003C9DBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1930060521B53688003C9DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				1930065221B65C6D003C9DBB /* UIAlertController+.swift */,
+				190FC41121BD1A1A0007C4A1 /* UIStackView+.swift */,
 				1930065621B666B6003C9DBB /* Int+.swift */,
 			);
 			path = Extension;
@@ -284,6 +287,7 @@
 				1930062721B58531003C9DBB /* MovieDetailViewController.swift in Sources */,
 				1930063621B61DFC003C9DBB /* MovieCollectionViewCell.swift in Sources */,
 				1930062F21B61C96003C9DBB /* Comment.swift in Sources */,
+				190FC41221BD1A1A0007C4A1 /* UIStackView+.swift in Sources */,
 				1930063F21B61E34003C9DBB /* DetailInfoCell.swift in Sources */,
 				193005FF21B53687003C9DBB /* AppDelegate.swift in Sources */,
 			);

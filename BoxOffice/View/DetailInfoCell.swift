@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol DetailInfoCellDelegate: class {
-    func didTapPosterImageView(_ recognizer: UITapGestureRecognizer)
-}
-
 class DetailInfoCell: UITableViewCell {
     
     private lazy var numberFormatter: NumberFormatter = {
@@ -20,7 +16,9 @@ class DetailInfoCell: UITableViewCell {
         return formatter
     }()
     
-    weak var delegate: DetailInfoCellDelegate?
+    var tapPosterImageViewHandler: ((UIImage?) -> Void)?
+    
+    var imageFetchFailureHandler: ((Error?) -> Void)?
 
     @IBOutlet private weak var posterImageView: UIImageView! {
         didSet {
@@ -82,12 +80,12 @@ class DetailInfoCell: UITableViewCell {
     
     func setProperties(_ object: MovieDetail) {
         guard let thumbURL = URL(string: object.image) else { return }
-        DispatchQueue.global(qos: .userInitiated).async {
-            if let imageData = try? Data(contentsOf: thumbURL) {
-                DispatchQueue.main.async {
-                    self.posterImageView.image = UIImage(data: imageData)
-                }
+        Network.fetchImage(from: thumbURL) { image, error in
+            if let error = error {
+                self.imageFetchFailureHandler?(error)
+                return
             }
+            self.posterImageView.image = image
         }
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
@@ -96,25 +94,10 @@ class DetailInfoCell: UITableViewCell {
         reservationRateLabel.text = "\(object.reservationGrade)위 \(object.reservationRate)%"
         ratingLabel.text = "\(object.userRating)"
         audienceLabel.text = numberFormatter.string(from: NSNumber(value: object.audience))
-        setRatingStackView(rating: object.userRating)
+        ratingStackView.setRating(object.userRating)
     }
     
     @objc func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
-        delegate?.didTapPosterImageView(recognizer)
-    }
-    
-    private func setRatingStackView(rating value: Double) {
-        for (index, view) in ratingStackView.arrangedSubviews.enumerated() {
-            if let imageView = view as? UIImageView {
-                let unit = Double(index * 2)
-                if value >= unit + 2 {
-                    imageView.image = UIImage(named: "ic_star_large_full")
-                } else if value >= unit + 1 {
-                    imageView.image = UIImage(named: "ic_star_large_half")
-                } else {
-                    imageView.image = UIImage(named: "ic_star_large")
-                }
-            }
-        }
+        tapPosterImageViewHandler?((recognizer.view as? UIImageView)?.image)
     }
 }
