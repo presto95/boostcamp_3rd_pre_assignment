@@ -9,9 +9,7 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-    
-    var imageFetchFailureHandler: ((Error?) -> Void)?
-    
+
     @IBOutlet private weak var posterImageView: UIImageView!
     
     @IBOutlet private weak var gradeImageView: UIImageView! {
@@ -43,18 +41,18 @@ class MovieTableViewCell: UITableViewCell {
         posterImageView.image = UIImage(named: "img_placeholder")
     }
     
-    func setProperties(_ object: MovieList.Data) {
+    func setProperties(_ object: MovieList.Data, imageFetchCompletion completion: @escaping (UIImage?, Error?) -> Void) {
         guard let thumbURL = URL(string: object.thumb) else { return }
         Network.fetchImage(from: thumbURL) { image, error in
-            if let error = error {
-                self.imageFetchFailureHandler?(error)
-                return
-            }
-            self.posterImageView.image = image
+            completion(image, error)
         }
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
         descriptionLabel.text = "평점 : \(object.userRating) 예매순위 : \(object.reservationGrade) 예매율 : \(object.reservationRate)"
         dateLabel.text = "개봉일 : \(object.date)"
+    }
+    
+    func setPosterImage(_ image: UIImage?) {
+        posterImageView.image = image
     }
 }

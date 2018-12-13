@@ -9,8 +9,6 @@
 import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
-
-    var imageFetchFailureHandler: ((Error?) -> Void)?
     
     @IBOutlet private weak var posterImageView: UIImageView!
     
@@ -47,18 +45,18 @@ class MovieCollectionViewCell: UICollectionViewCell {
         dateLabel.text = nil
     }
     
-    func setProperties(_ object: MovieList.Data) {
+    func setProperties(_ object: MovieList.Data, imageFetchCompletion completion: @escaping (UIImage?, Error?) -> Void) {
         guard let thumbURL = URL(string: object.thumb) else { return }
         Network.fetchImage(from: thumbURL) { image, error in
-            if let error = error {
-                self.imageFetchFailureHandler?(error)
-                return
-            }
-            self.posterImageView.image = image
+            completion(image, error)
         }
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
         descriptionLabel.text = "\(object.reservationGrade)위(\(object.userRating) / \(object.reservationRate)%)"
         dateLabel.text = object.date
+    }
+    
+    func setPosterImage(_ image: UIImage?) {
+        posterImageView.image = image
     }
 }

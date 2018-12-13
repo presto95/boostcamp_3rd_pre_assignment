@@ -44,10 +44,15 @@ extension MovieTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if let movieCell = cell as? MovieTableViewCell, let movieList = movieLists?[indexPath.row] {
-            movieCell.imageFetchFailureHandler = {
-                UIAlertController.presentErrorAlert(to: self, message: $0?.localizedDescription)
+            movieCell.setProperties(movieList) { image, error in
+                if let error = error {
+                    UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+                    return
+                }
+                if let currentIndexPath = tableView.indexPath(for: movieCell), currentIndexPath.row == indexPath.row {
+                    movieCell.setPosterImage(image)
+                }
             }
-            movieCell.setProperties(movieList)
         }
         return cell
     }

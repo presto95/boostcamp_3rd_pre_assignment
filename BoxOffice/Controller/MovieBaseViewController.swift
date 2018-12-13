@@ -58,9 +58,9 @@ class MovieBaseViewController: UIViewController {
     }
     
     func pushDetailViewController(id: String, title: String) {
-        guard let detailVC = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else { return }
-        detailVC.title = title
-        detailVC.id = id
-        navigationController?.pushViewController(detailVC, animated: true)
+        guard let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else { return }
+        detailViewController.title = title
+        detailViewController.id = id
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }

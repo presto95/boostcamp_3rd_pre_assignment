@@ -33,7 +33,13 @@ class Network {
     }
     
     static func fetchImage(from url: URL, completion: ((UIImage?, Error?) -> Void)?) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         DispatchQueue.global(qos: .userInitiated).async {
+            defer {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                } 
+            }
             do {
                 let imageData = try Data(contentsOf: url)
                 DispatchQueue.main.async {

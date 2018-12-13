@@ -20,11 +20,7 @@ class DetailInfoCell: UITableViewCell {
     
     var imageFetchFailureHandler: ((Error?) -> Void)?
 
-    @IBOutlet private weak var posterImageView: UIImageView! {
-        didSet {
-            posterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(touchUpPosterImageView(_:))))
-        }
-    }
+    @IBOutlet private weak var posterImageView: UIImageView!
     
     @IBOutlet private weak var gradeImageView: UIImageView! {
         didSet {
@@ -86,6 +82,7 @@ class DetailInfoCell: UITableViewCell {
                 return
             }
             self.posterImageView.image = image
+            self.posterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.touchUpPosterImageView(_:))))
         }
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
