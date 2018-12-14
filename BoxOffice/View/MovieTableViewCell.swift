@@ -43,9 +43,7 @@ class MovieTableViewCell: UITableViewCell {
     
     func setProperties(_ object: MovieList.Data, imageFetchCompletion completion: @escaping (UIImage?, Error?) -> Void) {
         guard let thumbURL = URL(string: object.thumb) else { return }
-        Network.fetchImage(from: thumbURL) { image, error in
-            completion(image, error)
-        }
+        Network.fetchImage(from: thumbURL, completion: completion)
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
         descriptionLabel.text = "평점 : \(object.userRating) 예매순위 : \(object.reservationGrade) 예매율 : \(object.reservationRate)"

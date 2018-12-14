@@ -50,6 +50,13 @@ class MovieDetailViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    private func presentPreviewViewController(_ image: UIImage?) {
+        let viewController = PreviewViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.image = image
+        present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension MovieDetailViewController: UITableViewDataSource {
@@ -58,16 +65,14 @@ extension MovieDetailViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             if let infoCell = cell as? DetailInfoCell, let movieDetail = movieDetail {
-                infoCell.tapPosterImageViewHandler = { image in
-                    let previewViewController = PreviewViewController()
-                    previewViewController.modalTransitionStyle = .crossDissolve
-                    previewViewController.image = image
-                    self.present(previewViewController, animated: true, completion: nil)
+                infoCell.tapPosterImageViewHandler = presentPreviewViewController
+                infoCell.setProperties(movieDetail) { image, error in
+                    if let error = error {
+                        UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+                        return
+                    }
+                    infoCell.setPosterImage(image)
                 }
-                infoCell.imageFetchFailureHandler = {
-                    UIAlertController.presentErrorAlert(to: self, message: $0?.localizedDescription)
-                }
-                infoCell.setProperties(movieDetail)
             }
         case 1:
             if let synopsisCell = cell as? DetailSynopsisCell, let synopsis = movieDetail?.synopsis {

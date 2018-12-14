@@ -17,8 +17,6 @@ class DetailInfoCell: UITableViewCell {
     }()
     
     var tapPosterImageViewHandler: ((UIImage?) -> Void)?
-    
-    var imageFetchFailureHandler: ((Error?) -> Void)?
 
     @IBOutlet private weak var posterImageView: UIImageView!
     
@@ -74,16 +72,9 @@ class DetailInfoCell: UITableViewCell {
         }
     }
     
-    func setProperties(_ object: MovieDetail) {
+    func setProperties(_ object: MovieDetail, imageFetchCompletion completion: @escaping (UIImage?, Error?) -> Void) {
         guard let thumbURL = URL(string: object.image) else { return }
-        Network.fetchImage(from: thumbURL) { image, error in
-            if let error = error {
-                self.imageFetchFailureHandler?(error)
-                return
-            }
-            self.posterImageView.image = image
-            self.posterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.touchUpPosterImageView(_:))))
-        }
+        Network.fetchImage(from: thumbURL, completion: completion)
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
         dateLabel.text = "\(object.date) 개봉"
@@ -94,7 +85,12 @@ class DetailInfoCell: UITableViewCell {
         ratingStackView.setRating(object.userRating)
     }
     
-    @objc func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
+    func setPosterImage(_ image: UIImage?) {
+        posterImageView.image = image
+        posterImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.touchUpPosterImageView(_:))))
+    }
+    
+    @objc private func touchUpPosterImageView(_ recognizer: UITapGestureRecognizer) {
         tapPosterImageViewHandler?((recognizer.view as? UIImageView)?.image)
     }
 }

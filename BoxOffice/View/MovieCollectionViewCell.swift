@@ -47,9 +47,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     func setProperties(_ object: MovieList.Data, imageFetchCompletion completion: @escaping (UIImage?, Error?) -> Void) {
         guard let thumbURL = URL(string: object.thumb) else { return }
-        Network.fetchImage(from: thumbURL) { image, error in
-            completion(image, error)
-        }
+        Network.fetchImage(from: thumbURL, completion: completion)
         gradeImageView.image = object.grade.toGradeImage
         titleLabel.text = object.title
         descriptionLabel.text = "\(object.reservationGrade)위(\(object.userRating) / \(object.reservationRate)%)"

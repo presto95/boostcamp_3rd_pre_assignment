@@ -38,7 +38,7 @@ class Network {
             defer {
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                } 
+                }
             }
             do {
                 let imageData = try Data(contentsOf: url)
