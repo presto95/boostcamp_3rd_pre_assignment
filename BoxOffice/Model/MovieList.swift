@@ -6,6 +6,7 @@
 //  Copyright © 2018 presto. All rights reserved.
 //
 
+/// 영화 리스트 응답 객체
 struct MovieList: Codable {
     struct Data: Codable {
         let grade: Int

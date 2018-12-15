@@ -6,6 +6,7 @@
 //  Copyright © 2018 presto. All rights reserved.
 //
 
+/// 영화 상세정보 응답 객체
 struct MovieDetail: Codable {
     let audience: Int
     let actor: String

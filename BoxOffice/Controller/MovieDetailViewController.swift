@@ -26,7 +26,7 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        API.requestMovieDetail(id: id, completion: requestMovieDetailCompletion)
+        API.requestMovieDetail(id: id, completion: requestMovieDetailCompletion(movieDetail:error:))
     }
     
     private func requestMovieDetailCompletion(movieDetail: MovieDetail?, error: Error?) {
@@ -36,7 +36,7 @@ class MovieDetailViewController: UIViewController {
         }
         guard let movieDetail = movieDetail else { return }
         self.movieDetail = movieDetail
-        API.requestComments(id: id, completion: requestCommentCompletion)
+        API.requestComments(id: id, completion: requestCommentCompletion(data:error:))
     }
     
     private func requestCommentCompletion(data: Comment?, error: Error?) {
@@ -49,13 +49,6 @@ class MovieDetailViewController: UIViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-    }
-    
-    private func presentPreviewViewController(_ image: UIImage?) {
-        let viewController = PreviewViewController()
-        viewController.modalTransitionStyle = .crossDissolve
-        viewController.image = image
-        present(viewController, animated: true, completion: nil)
     }
 }
 
@@ -120,5 +113,14 @@ extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 3 { return .leastNonzeroMagnitude }
         return 16
+    }
+}
+
+extension MovieDetailViewController {
+    private func presentPreviewViewController(_ image: UIImage?) {
+        let viewController = PreviewViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.image = image
+        present(viewController, animated: true, completion: nil)
     }
 }

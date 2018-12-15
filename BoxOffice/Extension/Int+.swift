@@ -9,6 +9,7 @@
 import UIKit
 
 extension Int {
+    /// 등급 정보에 대한 이미지 반환.
     var toGradeImage: UIImage? {
         if self == 0 {
             return UIImage(named: "ic_allages")

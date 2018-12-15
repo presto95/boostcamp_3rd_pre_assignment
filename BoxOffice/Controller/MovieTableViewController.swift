@@ -32,7 +32,7 @@ class MovieTableViewController: MovieBaseViewController {
     }
     
     @objc private func refreshControlShouldOccur(_ sender: UIRefreshControl) {
-        API.requestMovieList(orderType: orderType, completion: requestCompletion)
+        API.requestMovieList(orderType: orderType, completion: requestCompletion(movieList:error:))
     }
     
     @IBAction private func touchUpSettingButton(_ sender: UIBarButtonItem) {

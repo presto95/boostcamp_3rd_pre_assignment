@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// 네트워크 에러 정의.
 enum NetworkError: Int, Error {
     case badRequestError = 400
     case unauthorizedError = 401

@@ -114,7 +114,6 @@
 				193005FE21B53687003C9DBB /* AppDelegate.swift */,
 				1930060721B53688003C9DBB /* LaunchScreen.storyboard */,
 				1930060521B53688003C9DBB /* Assets.xcassets */,
-				1930065C21B695B1003C9DBB /* NetworkError.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -144,6 +143,7 @@
 			children = (
 				1930061421B57FF0003C9DBB /* Network.swift */,
 				1930061621B57FF7003C9DBB /* API.swift */,
+				1930065C21B695B1003C9DBB /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";

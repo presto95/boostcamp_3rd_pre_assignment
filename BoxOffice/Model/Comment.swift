@@ -6,6 +6,7 @@
 //  Copyright © 2018 presto. All rights reserved.
 //
 
+/// 댓글 응답 객체
 struct Comment: Codable {
     struct Data: Codable {
         let rating: Double

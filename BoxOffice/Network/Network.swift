@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 class Network {
+    /// HTTP 통신의 GET 메소드 정의.
+    ///
+    /// - Parameters:
+    ///   - url: 웹 URL
+    ///   - successHandler: 통신 성공시 실행할 핸들러
+    ///   - failureHandler: 통신 실패시 실행할 핸들러
     static func get(_ url: URL, successHandler: ((Data) -> Void)?, failureHandler: ((Error) -> Void)?) {
         let session = URLSession(configuration: .default)
         IndicatorView.shared.show()
@@ -32,6 +38,11 @@ class Network {
         task.resume()
     }
     
+    /// 네트워크로부터 이미지 받아오기.
+    ///
+    /// - Parameters:
+    ///   - url: 웹 URL
+    ///   - completion: 통신 후 실행할 핸들러
     static func fetchImage(from url: URL, completion: ((UIImage?, Error?) -> Void)?) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         DispatchQueue.global(qos: .userInitiated).async {

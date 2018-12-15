@@ -9,6 +9,9 @@
 import UIKit
 
 extension UIStackView {
+    /// 평점에 따라 별 모양의 평점 뷰 설정.
+    ///
+    /// - Parameter value: 평점
     func setRating(_ value: Double) {
         for (index, view) in arrangedSubviews.enumerated() {
             if let imageView = view as? UIImageView {
