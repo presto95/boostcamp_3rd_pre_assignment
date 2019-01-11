@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieTableViewController: MovieBaseViewController {
+class MovieTableViewController: UIViewController {
     
     private lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -16,19 +16,17 @@ class MovieTableViewController: MovieBaseViewController {
         return control
     }()
     
+    private var _movieLists: [MovieList.Data]?
+    
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.refreshControl = refreshControl
         }
     }
     
-    override func requestCompletion(movieList: MovieList?, error: Error?) {
-        super.requestCompletion(movieList: movieList, error: error)
-        DispatchQueue.main.async {
-            self.tableView.separatorStyle = .singleLine
-            self.tableView.refreshControl?.endRefreshing()
-            self.tableView.reloadData()
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        orderType = UserDefaults.standard.integer(forKey: orderTypeKey)
     }
     
     @objc private func refreshControlShouldOccur(_ sender: UIRefreshControl) {
@@ -36,7 +34,53 @@ class MovieTableViewController: MovieBaseViewController {
     }
     
     @IBAction private func touchUpSettingButton(_ sender: UIBarButtonItem) {
-       presentSettingActionSheet()
+        presentSettingActionSheet(to: self)
+    }
+}
+
+extension MovieTableViewController: MovieRequest {
+    var orderType: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: orderTypeKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: orderTypeKey)
+            navigationItem.title = navigationTitles[newValue]
+            API.requestMovieList(orderType: newValue, completion: self.requestCompletion)
+        }
+    }
+    
+    var movieLists: [MovieList.Data]? {
+        get {
+            return _movieLists
+        }
+        set {
+            _movieLists = newValue
+            DispatchQueue.main.async {
+                self.tableView.separatorStyle = .singleLine
+                self.tableView.refreshControl?.endRefreshing()
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func requestCompletion(movieList: MovieList?, error: Error?) {
+        if let error = error {
+            UIAlertController
+                .alert(title: "오류", message: error.localizedDescription)
+                .action(title: "확인")
+                .present(to: self)
+            return
+        }
+        guard let movieList = movieList else { return }
+        movieLists = movieList.movies
+    }
+    
+    func pushDetailViewController(id: String, title: String) {
+        guard let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else { return }
+        detailViewController.title = title
+        detailViewController.id = id
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -46,7 +90,10 @@ extension MovieTableViewController: UITableViewDataSource {
         if let movieCell = cell as? MovieTableViewCell, let movieList = movieLists?[indexPath.row] {
             movieCell.setProperties(movieList) { image, error in
                 if let error = error {
-                    UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+                    UIAlertController
+                        .alert(title: "오류", message: error.localizedDescription)
+                        .action(title: "확인")
+                        .present(to: self)
                     return
                 }
                 if let currentIndexPath = tableView.indexPath(for: movieCell), currentIndexPath.row == indexPath.row {

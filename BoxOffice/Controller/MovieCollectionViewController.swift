@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCollectionViewController: MovieBaseViewController {
+class MovieCollectionViewController: UIViewController {
 
     lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -16,26 +16,70 @@ class MovieCollectionViewController: MovieBaseViewController {
         return control
     }()
     
+    private var _movieLists: [MovieList.Data]?
+    
     @IBOutlet private weak var collectionView: UICollectionView! {
         didSet {
             collectionView.refreshControl = refreshControl
         }
     }
-
-    override func requestCompletion(movieList: MovieList?, error: Error?) {
-        super.requestCompletion(movieList: movieList, error: error)
-        DispatchQueue.main.async {
-            self.collectionView.refreshControl?.endRefreshing()
-            self.collectionView.reloadData()
-        }
-    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        orderType = UserDefaults.standard.integer(forKey: orderTypeKey)
+    }
+
     @objc private func refreshControlShouldOccur(_ sender: UIRefreshControl) {
         API.requestMovieList(orderType: orderType, completion: requestCompletion(movieList:error:))
     }
     
     @IBAction func touchUpSettingButton(_ sender: UIBarButtonItem) {
-        presentSettingActionSheet()
+        presentSettingActionSheet(to: self)
+    }
+}
+
+extension MovieCollectionViewController: MovieRequest {
+    var orderType: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: orderTypeKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: orderTypeKey)
+            navigationItem.title = navigationTitles[newValue]
+            API.requestMovieList(orderType: newValue, completion: self.requestCompletion)
+        }
+    }
+    
+    var movieLists: [MovieList.Data]? {
+        get {
+            return _movieLists
+        }
+        set {
+            _movieLists = newValue
+            DispatchQueue.main.async {
+                self.collectionView.refreshControl?.endRefreshing()
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func requestCompletion(movieList: MovieList?, error: Error?) {
+        if let error = error {
+            UIAlertController
+                .alert(title: "오류", message: error.localizedDescription)
+                .action(title: "확인")
+                .present(to: self)
+            return
+        }
+        guard let movieList = movieList else { return }
+        movieLists = movieList.movies
+    }
+    
+    func pushDetailViewController(id: String, title: String) {
+        guard let detailViewController = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController else { return }
+        detailViewController.title = title
+        detailViewController.id = id
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -45,7 +89,10 @@ extension MovieCollectionViewController: UICollectionViewDataSource {
         if let movieCell = cell as? MovieCollectionViewCell, let movieList = movieLists?[indexPath.row] {
             movieCell.setProperties(movieList) { image, error in
                 if let error = error {
-                    UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+                    UIAlertController
+                        .alert(title: "오류", message: error.localizedDescription)
+                        .action(title: "확인")
+                        .present(to: self)
                     return
                 }
                 if let currentIndexPath = collectionView.indexPath(for: movieCell), currentIndexPath.item == indexPath.item {

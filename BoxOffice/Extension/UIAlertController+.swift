@@ -25,11 +25,4 @@ extension UIAlertController {
             viewController.present(self, animated: true, completion: completion)
         }
     }
-    
-    static func presentErrorAlert(to viewController: UIViewController, message: String?) {
-        UIAlertController
-            .alert(title: "오류", message: message)
-            .action(title: "확인", handler: nil)
-            .present(to: viewController)
-    }
 }

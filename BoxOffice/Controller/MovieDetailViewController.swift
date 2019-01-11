@@ -31,7 +31,10 @@ class MovieDetailViewController: UIViewController {
     
     private func requestMovieDetailCompletion(movieDetail: MovieDetail?, error: Error?) {
         if let error = error {
-            UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+            UIAlertController
+                .alert(title: "오류", message: error.localizedDescription)
+                .action(title: "확인")
+                .present(to: self)
             return
         }
         guard let movieDetail = movieDetail else { return }
@@ -41,7 +44,10 @@ class MovieDetailViewController: UIViewController {
     
     private func requestCommentCompletion(data: Comment?, error: Error?) {
         if let error = error {
-            UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+            UIAlertController
+                .alert(title: "오류", message: error.localizedDescription)
+                .action(title: "확인")
+                .present(to: self)
             return
         }
         guard let comments = data?.comments else { return }
@@ -61,7 +67,10 @@ extension MovieDetailViewController: UITableViewDataSource {
                 infoCell.tapPosterImageViewHandler = presentPreviewViewController
                 infoCell.setProperties(movieDetail) { image, error in
                     if let error = error {
-                        UIAlertController.presentErrorAlert(to: self, message: error.localizedDescription)
+                        UIAlertController
+                            .alert(title: "오류", message: error.localizedDescription)
+                            .action(title: "확인")
+                            .present(to: self)
                         return
                     }
                     infoCell.setPosterImage(image)
