@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_splash" translatesAutoresizingMaskIntoConstraints="NO" id="GhE-GX-bHs">
-                                <rect key="frame" x="118.5" y="98" width="138" height="138"/>
+                                <rect key="frame" x="118.5" y="164.5" width="138" height="138"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Connect_logo_w" translatesAutoresizingMaskIntoConstraints="NO" id="4W0-0D-hDb">
                                 <rect key="frame" x="118" y="573.5" width="139" height="20"/>
@@ -29,7 +29,7 @@
                         <constraints>
                             <constraint firstItem="GhE-GX-bHs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="QRE-ee-IIA"/>
                             <constraint firstItem="4W0-0D-hDb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.75" id="Z2h-9j-y1M"/>
-                            <constraint firstItem="GhE-GX-bHs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.5" id="gNN-CX-t83"/>
+                            <constraint firstItem="GhE-GX-bHs" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.7" id="gNN-CX-t83"/>
                             <constraint firstItem="4W0-0D-hDb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jCX-y0-dm9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
